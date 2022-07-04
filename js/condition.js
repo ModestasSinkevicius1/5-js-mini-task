@@ -69,3 +69,13 @@ if(arrayLength1 <= arrayLength2)
     console.log('Pomidoras');
 else if(arrayLength1 >= arrayLength2)
     console.log('Bandykite kita karta');
+
+switch ('Pomidoras') {
+    case 'Pomidoras':
+        console.log('Taip')
+        break;
+
+    default:
+        console.log('Ne');
+        break;
+}
