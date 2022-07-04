@@ -1,5 +1,6 @@
 // Ciklo panaudojimas
 // Uzduotis 1
+
 let suma = 0;
 
 for(let i = -70;i<30;i++)
