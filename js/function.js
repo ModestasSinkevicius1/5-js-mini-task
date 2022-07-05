@@ -51,18 +51,32 @@ function skaitmenuKiekisSkaiciuje(a){
     {
         numberLength--;
     }
+
+    if(textNumber.includes('.'))
+    {
+        numberLength--;
+    }
+    /*
+    if(a < 0)
+        numberLength--;
+
+    if(a % 1 !== 0)
+        numberLength--;
+    */
     return numberLength;
 }
 
 console.log(skaitmenuKiekisSkaiciuje(1));
 console.log(skaitmenuKiekisSkaiciuje(1945));
 console.log(skaitmenuKiekisSkaiciuje(-1));
+console.log(skaitmenuKiekisSkaiciuje(3.2));
 console.log(skaitmenuKiekisSkaiciuje(Infinity));
 console.log(skaitmenuKiekisSkaiciuje(-Infinity));
 console.log(skaitmenuKiekisSkaiciuje(NaN));
 console.log(skaitmenuKiekisSkaiciuje('8'));
 console.log(skaitmenuKiekisSkaiciuje('abc'));
 console.log(skaitmenuKiekisSkaiciuje(true));
+console.log(skaitmenuKiekisSkaiciuje(null));
 console.log('\r\n');
 
 // Uzduotis 4
@@ -70,18 +84,29 @@ console.log('\r\n');
 console.log('============================= Uzduotis 4 =============================\r\n')
 
 function didziausiasSkaiciusSarase(a){
-    if(typeof a !== 'object' || a === null)
-        return 'Pateikta netinkamo tipo reikšmė.'
+    /*if(typeof a !== 'object' || a === null)
+        return 'Pateikta netinkamo tipo reikšmė.';
+    */
+    if(!Array.isArray(a))
+        return 'Pateikta netinkamo tipo reikšmė.';
+
     if(a.length <= 0)
         return 'Pateiktas sąrašas negali būti tuščias.'
     
-    let temp = a[0];
+    let temp = -Infinity;
 
-    for(let i=1;i<a.length;i++)
+    for(let i=0;i<a.length;i++)
     {
-        if(temp<a[i])
+        if( typeof a[i] === 'number'
+            && isFinite(a[i])
+            && temp<a[i])
+        {
             temp = a[i];
+        }
     }
+
+    if(temp === -Infinity)
+        return 'Masyve nerasta normalaus skaiciaus';
 
     return temp;
 }
@@ -93,29 +118,50 @@ console.log(didziausiasSkaiciusSarase([69, 69, 69, 69, 66]));
 console.log(didziausiasSkaiciusSarase([-1, -2, -3, -4, -5, -6, -7, -8]));
 console.log(didziausiasSkaiciusSarase('pomidoras'));
 console.log(didziausiasSkaiciusSarase([]));
+console.log(didziausiasSkaiciusSarase({}));
 console.log(didziausiasSkaiciusSarase(null));
+console.log(didziausiasSkaiciusSarase([NaN, 1]));
+console.log(didziausiasSkaiciusSarase([NaN, NaN]));
+console.log(didziausiasSkaiciusSarase([NaN, -Infinity]));
+console.log(didziausiasSkaiciusSarase([[2], 1]));
+console.log(didziausiasSkaiciusSarase(['2', 1]));
 console.log('\r\n');
 
 // Uzduotis 5
 
 console.log('============================= Uzduotis 5 =============================\r\n')
 
-function isrinktiRaides(text, row){
+function isrinktiRaides(text, step){
     if(typeof text !== 'string')
-        return 'Pirmasis kintamasis yra netinkamo tipo.';
+        return 'Pirmasis kintamasis turi buti tekstas.';
     if(text.length <= 0 || text.length > 100)
         return 'Pirmojo kintamojo reikšmė yra netinkamo dydžio.';
     
-    if(typeof row !== 'number')
-        return 'Antrasis kintamasis yra netinkamo tipo.';
-    if(row <= 0)
-        return 'Antrasis kintamasis turi būti didesnis už nulį.';
-    if(row > text.length)
+        if(typeof step !== 'number' || step % 1 !== 0)
+        return 'Antrasis kintamasis turi buti naturalus skaicius.';
+        if(step === 0)
+        return 'Antrasis kintamasis negali buti nulis.';
+        if(step > text.length)
         return 'Antrasis kintamasis turi būti ne didesnis už pateikto teksto ilgį.';
 
-    let junginys = '';
+    let newText = '';
     
-    for(let i=row-1;i<text.length;i+=row)
+    if(step < 0)
+    {
+        for(let i=text.length-1;i>=0;i--)
+        {
+            newText += text[i];
+        }
+    }
+
+    if(newText !== '')
+    {
+        text = newText;
+        step *= -1;
+    }
+
+    let junginys = '';
+    for(let i=step-1;i<text.length;i+=step)
     {
         junginys += text[i];
     }
@@ -128,6 +174,11 @@ console.log(isrinktiRaides('abcdefghijkl', 3));
 console.log(isrinktiRaides('abc', 0));
 console.log(isrinktiRaides('abc', 4));
 console.log( isrinktiRaides(1561, 2));
+console.log(isrinktiRaides('abcdefg', NaN));
+console.log(isrinktiRaides('abcdefg', []));
+console.log(isrinktiRaides([], 1));
+console.log(isrinktiRaides('abcdefg', -1));
+console.log(isrinktiRaides('abcdefg', -2));
 console.log('\r\n');
 // Uzduotis 6
 
