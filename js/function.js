@@ -84,7 +84,7 @@ console.log(skaitmenuKiekisSkaiciuje('8'));
 console.log(skaitmenuKiekisSkaiciuje('abc'));
 console.log(skaitmenuKiekisSkaiciuje(true));
 console.log(skaitmenuKiekisSkaiciuje(null));
-console.log(skaitmenuKiekisSkaiciuje(190000000000000**20));
+console.log(skaitmenuKiekisSkaiciuje(1*10**49));
 console.log('\r\n');
 
 // Uzduotis 4
@@ -149,7 +149,7 @@ function isrinktiRaides(text, step){
         return 'Antrasis kintamasis turi buti naturalus skaicius.';
     if(step === 0)
         return 'Antrasis kintamasis negali buti nulis.';
-    if(step > text.length)
+    if(Math.abs(step) > text.length)
         return 'Antrasis kintamasis turi būti ne didesnis už pateikto teksto ilgį.';
 
     let junginys = '';
@@ -182,7 +182,9 @@ console.log(isrinktiRaides('abcdefg', []));
 console.log(isrinktiRaides([], 1));
 console.log(isrinktiRaides('abcdefg', -1));
 console.log(isrinktiRaides('abcdefg', -2));
+console.log(isrinktiRaides('abcdefg', -20));
 console.log('\r\n');
+
 // Uzduotis 6
 
 console.log('============================= Uzduotis 6 =============================\r\n')

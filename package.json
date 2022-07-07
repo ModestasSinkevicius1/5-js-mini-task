@@ -12,6 +12,9 @@
     "cycle": "nodemon ./js/cycle.js",
     "condition": "nodemon ./js/condition.js",
     "function": "nodemon ./js/function.js",
+    "loops": "nodemon ./js/loops.js",
+    "arrow": "nodemon ./js/arrow.js",
+    "object": "nodemon ./js/object.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
