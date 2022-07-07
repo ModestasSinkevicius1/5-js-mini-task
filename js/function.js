@@ -45,8 +45,15 @@ console.log('============================= Uzduotis 3 ==========================
 function skaitmenuKiekisSkaiciuje(a){
     if(typeof a !== "number" || !isFinite(a))
         return 'Pateikta netinkamo tipo reikšmė.'
+    
+    if(/e+/.test(a))
+    {
+        a = BigInt(a);
+    }
+
     const textNumber = '' + a;
     let numberLength = textNumber.length;
+    
     if(textNumber.includes('-'))
     {
         numberLength--;
@@ -77,6 +84,7 @@ console.log(skaitmenuKiekisSkaiciuje('8'));
 console.log(skaitmenuKiekisSkaiciuje('abc'));
 console.log(skaitmenuKiekisSkaiciuje(true));
 console.log(skaitmenuKiekisSkaiciuje(null));
+console.log(skaitmenuKiekisSkaiciuje(190000000000000**20));
 console.log('\r\n');
 
 // Uzduotis 4
@@ -137,35 +145,30 @@ function isrinktiRaides(text, step){
     if(text.length <= 0 || text.length > 100)
         return 'Pirmojo kintamojo reikšmė yra netinkamo dydžio.';
     
-        if(typeof step !== 'number' || step % 1 !== 0)
+    if(typeof step !== 'number' || step % 1 !== 0)
         return 'Antrasis kintamasis turi buti naturalus skaicius.';
-        if(step === 0)
+    if(step === 0)
         return 'Antrasis kintamasis negali buti nulis.';
-        if(step > text.length)
+    if(step > text.length)
         return 'Antrasis kintamasis turi būti ne didesnis už pateikto teksto ilgį.';
 
-    let newText = '';
+    let junginys = '';
     
     if(step < 0)
     {
-        for(let i=text.length-1;i>=0;i--)
+        step*=-1;
+        for(let i=text.length-step;i>=0;i-=step)
         {
-            newText += text[i];
+            junginys += text[i];
         }
     }
-
-    if(newText !== '')
+    else
     {
-        text = newText;
-        step *= -1;
+        for(let i=step-1;i<text.length;i+=step)
+        {
+            junginys += text[i];
+        }
     }
-
-    let junginys = '';
-    for(let i=step-1;i<text.length;i+=step)
-    {
-        junginys += text[i];
-    }
-
     return junginys;
 }
 
