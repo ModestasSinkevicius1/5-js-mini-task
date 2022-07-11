@@ -88,3 +88,14 @@ for(const key of animalKey){
 for(const key in animal){
     console.log(`${key}: ${animal[key]}`);
 }
+
+const person2 = {
+    name: 'Bob',
+    age: 43,
+    isMarried: true,
+    password: 'no',
+}
+
+// Remove sensitive info
+delete person2.password;
+console.log(person2);
