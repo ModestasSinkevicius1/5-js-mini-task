@@ -17,6 +17,7 @@
     "object": "nodemon ./js/object.js",
     "spread": "nodemon ./js/spread.js",
     "rest": "nodemon ./js/rest.js",
+    "ternary": "nodemon ./js/ternary.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
