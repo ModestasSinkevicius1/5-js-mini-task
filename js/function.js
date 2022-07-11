@@ -86,7 +86,6 @@ console.log(skaitmenuKiekisSkaiciuje(true));
 console.log(skaitmenuKiekisSkaiciuje(null));
 console.log(skaitmenuKiekisSkaiciuje(1*10**49));
 console.log('\r\n');
-
 // Uzduotis 4
 
 console.log('============================= Uzduotis 4 =============================\r\n')
